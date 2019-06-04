@@ -1,0 +1,357 @@
+<div>
+    <app-navbar-consultant></app-navbar-consultant>
+    <div class="v-main-page v-graphics" aria-live="assertive">
+      <div class="row">
+        <div class="mx-auto">
+          <ol class="breadcrumb c-bread-crumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/home']" aria-label="Presione para ir al inicio">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a
+                [routerLink]="['/home/stadistic']"
+                aria-label="Presione para ir al módulo de estadísticas"
+                >Estadísticas</a
+              >
+            </li>
+            <li *ngIf="inquestType === 1" class="breadcrumb-item">
+              <a
+                [routerLink]="['/statistics/inquests']"
+                aria-label="Presione para ir al submódulo de estadísticas nacionales"
+                >Estadísticas Nacionales</a
+              >
+            </li>
+            <li *ngIf="inquestType === 2" class="breadcrumb-item">
+              <a
+                [routerLink]="['/statistics/inquests']"
+                aria-label="Presione para ir al submódulo de estadísticas nacionales"
+                >Enadis</a
+              >
+            </li>
+            <li *ngIf="inquestType === 1" class="breadcrumb-item">
+              <a
+                [routerLink]="['/statistics/inquests/graphics']"
+                aria-label="Presione para ir a los gráficos"
+                >Censo Nacional de Población y Vivienda - 2011</a
+              >
+            </li>
+            <li *ngIf="inquestType === 2" class="breadcrumb-item">
+              <a
+                [routerLink]="['/statistics/inquests/graphics']"
+                aria-label="Presione para ir a los gráficos"
+              >
+                Encuesta enadis</a
+              >
+            </li>
+          </ol>
+        </div>
+      </div>
+  
+      <div class="row text-center">
+        <div class="col-md-6 mx-auto ">
+          <h1
+            *ngIf="inquestType === 1"
+            role="heading"
+            tabindex="0"
+            aria-level="-1"
+            aria-relevant="text"
+            class="c-title-national-stistics"
+            id="tituloEstadisticasNacionales"
+          >
+            Estadísticas Nacionales
+          </h1>
+          <h1
+            *ngIf="inquestType === 2"
+            role="heading"
+            tabindex="0"
+            aria-level="-1"
+            aria-relevant="text"
+            class="c-title-national-stistics"
+            id="tituloEstadisticasNacionales"
+          >
+            Enadis
+          </h1>
+          <h1 *ngIf="inquestType === 1" id="censoName">
+            Censo Nacional de Población y Vivienda - 2011
+          </h1>
+          <h1 *ngIf="inquestType === 2" id="censoName">
+            Encuesta Nacional Sobre Discapacidad
+          </h1>
+        </div>
+      </div>
+  
+      <div class="container c-index-container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs justify-content-center" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              data-toggle="tab"
+              aria-label="Información general de variables"
+              href="#variables"
+              >Variables</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              data-toggle="tab"
+              aria-label="Seleccionar variables para realizar cruce"
+              href="#cross"
+              >Cruces</a
+            >
+          </li>
+        </ul>
+  
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="variables" class="container tab-pane active">
+            <br />
+            <div class="row">
+              <div class="text-center col-lg-12">
+                <button
+                  class="btn-action"
+                  (click)="displayChartTypeOfDisability()"
+                  aria-label="Presione desplegar información de tipo de discapacidad"
+                >
+                  Tipo de discapacidad
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartSex()"
+                  aria-label="Presione desplegar información de sexo "
+                >
+                  Sexo
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartAge()"
+                  aria-label="Presione desplegar información de edad"
+                >
+                  Edad
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartEducation()"
+                  aria-label="Presione desplegar información de nivel educativo"
+                >
+                  Nivel Educativo
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartTechnologies()"
+                  aria-label="Presione desplegar información de uso tecnología"
+                >
+                  Tecnología
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartRegion()"
+                  aria-label="Presione desplegar información de regiones"
+                >
+                  Región Socieconómica
+                </button>
+                <button
+                  class="btn-action"
+                  (click)="displayChartEmployment()"
+                  aria-label="Presione desplegar información de empleo"
+                >
+                  Empleo
+                </button>
+              </div>
+              <div [hidden]="!displayDefaultBlockView" class="col-lg-12 col-md-4 col-sm-2">
+                <button
+                  [hidden]="displayGraphic"
+                  (click)="changeOptionsPattern()"
+                  class="btn-second float-right"
+                  attr.aria-label="Aplicar patrones: {{ patthern }}"
+                >
+                  <img src="./assets/img/statistic/textura_icono.png" class="imgButton" />
+                </button>
+                <button
+                  [hidden]="displayGraphic"
+                  class="btn-second float-right"
+                  (click)="changeOptionsConstrast()"
+                  attr.aria-label="Activar alto contraste: {{ highContrast }}"
+                >
+                  <i class="fas fa-adjust"></i>
+                </button>
+                <button
+                  class="btn-second float-right "
+                  (click)="showTable()"
+                  aria-label="Mostrar tabla"
+                >
+                  <i class="fas fa-table"></i> Tabla
+                </button>
+                <!-- <button class="btn-second float-right" (click)="showGraphic()" aria-label="Mostrar gráfico"><i class="fas fa-signal"></i> Gráfico</button> -->
+                <div class="btn-group btn-second-select float-right">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-second float-right"
+                    (click)="showGraphic()"
+                  >
+                    <i class="fas fa-signal"></i> Gráfico
+                  </button>
+                  <button
+                    aria-hidden="true"
+                    type="button"
+                    class="btn btn-secondary btn-second   float-right dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span class="sr-only">Seleccione tipo de gráfico</span>
+                  </button>
+                  <div aria-hidden="true" class="dropdown-menu">
+                    <button class="dropdown-item" (click)="changeChartType('pie')">Pastel</button>
+                    <button class="dropdown-item" (click)="changeChartType('donut')">Dona</button>
+                    <button class="dropdown-item" (click)="changeChartType('column')">
+                      Columnas
+                    </button>
+                    <button class="dropdown-item" (click)="changeChartType('bar')">Barras</button>
+                  </div>
+                </div>
+              </div>
+              <div
+                [hidden]="displayDefaultBlockView"
+                class="text-center mr-sm-auto ml-sm-auto col-lg-12 col-md-12 col-sm-12 gray-statistics-background index-graphic-background"
+              >
+                <h2 id="selectVariable">
+                  Seleccione la variable que desea visualizar
+                </h2>
+              </div>
+              <div [hidden]="displayGraphic" aria-live="polite" class="text-center col-md-12">
+                <div aria-relevant="all" [chart]="chart"></div>
+              </div>
+              <div [hidden]="displayTable" aria-live="polite" class="text-center col-md-12">
+                <table
+                  #dtElement
+                  datatable
+                  [dtOptions]="dtOptions"
+                  aria-relevant="all"
+                  [dtTrigger]="dtTrigger"
+                  class="row-border cell-border hover"
+                  aria-label="En cada encabezado presionar enter para activar ordenamiento ascendente o descendente."
+                >
+                  <caption>
+                    {{
+                      selectedVariable.title
+                    }}
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th>{{ selectedVariable.title }}</th>
+                      <th>Cantidad de Personas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let variable of variableByCensusArray">
+                      <td class="text-center">{{ variable.variableDescription }}</td>
+                      <td class="text-center">{{ variable.quantity }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Variable crossing -->
+          <div id="cross" class="container tab-pane fade">
+            <br />
+            <div class="row">
+              <div [hidden]="displayDefaultBlockViewCross" class="col-lg-12">
+                <div class="text-center text-cross ">
+                  <select
+                    class="select-button"
+                    id="variableOne"
+                    name="Variable Uno"
+                    (change)="onChangeVariableOne($event.target.value)"
+                  >
+                    <option value="-1">Variable 1</option>
+                    <option
+                      *ngFor="let variable of variableByCensusToCross"
+                      [value]="[variable.variableId, variable.variableDescription]"
+                    >
+                      <a>{{ variable.variableDescription }}</a>
+                    </option>
+                  </select>
+                  Y
+                  <select
+                    class="select-button"
+                    id="variableTwo"
+                    (change)="onChangeVariableTwo($event.target.value)"
+                  >
+                    <option value="-1">Variable 2</option>
+                    <option
+                      *ngFor="let variable of variableByCrossingTwo"
+                      [value]="[
+                        variable.variableId,
+                        variable.variableDescription,
+                        variable.variableId
+                      ]"
+                    >
+                      {{ variable.variableDescription }}
+                    </option>
+                  </select>
+                  Y
+                  <select
+                    class="select-button"
+                    id="variableThree"
+                    (change)="onChangeVariableThree($event.target.value)"
+                  >
+                    <option value="-1">Variable 3</option>
+                    <option
+                      *ngFor="let variable of variableByCrossingThree"
+                      [value]="[
+                        variable.variableId,
+                        variable.variableDescription,
+                        variable.variableId
+                      ]"
+                    >
+                      <a>{{ variable.variableDescription }}</a>
+                    </option>
+                  </select>
+                  <button
+                    class="btn-charge"
+                    (click)="chargeVariables()"
+                    routerLink="crossingView/{{ idCensus }}/{{ variablesInfo.variableOne[0] }}/{{
+                      variablesInfo.variableTwo[2]
+                    }}/{{ variablesInfo.variableThree[2] }}/{{ variablesInfo.variableTwo[0] }}"
+                    aria-label="Presione cargar información del cruce"
+                    [disabled]="loadCross"
+                  >
+                    <i class="fas fa-check-circle"></i> Cargar
+                  </button>
+                </div>
+                <div
+                  class="text-center mr-sm-auto ml-sm-auto col-lg-12 col-md-12 col-sm-12 gray-statistics-background index-graphic-background"
+                >
+                  <h2 id="selectVariable">
+                    Seleccione los cruces que desea visualizar
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div [hidden]="!displayDefaultBlockViewCross" class="row">
+              <div class="col-lg-12 text-center">
+                <button
+                  class="btn-charge  float-left"
+                  (click)="chargeCross()"
+                  id="btn-new-cross"
+                  aria-label="Volver a seleccionar variables"
+                >
+                  <i class="fas fa-plus-circle"></i> Nuevo Cruce
+                </button>
+              </div>
+              <!-- Display CHART of cross  -->
+              <div class="col-lg-12 text-center">
+                <router-outlet class="col-lg-12 text-center"></router-outlet>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+  

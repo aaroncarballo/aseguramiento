@@ -1,0 +1,196 @@
+@import '../../common/style';
+@import '../../statistics.component.scss';
+
+.v-graphics{
+    h1{
+        &#censoName{
+            margin: .67em 0;
+            font-size: 24px;
+            font-family: Helvetica;
+            font-weight: bold;
+            color: #505050;
+        }
+    }
+    .select-button{
+      border: none;
+      -webkit-border-radius: 4;
+      -moz-border-radius: 4;
+      border-radius: 4px;
+      -webkit-box-shadow: 0px 2px 5px #F1F4F5;
+      -moz-box-shadow: 0px 2px 5px #F1F4F5;
+      box-shadow: 0px 1px 1px #000000;
+      padding: 10px 20px 10px 20px;
+      font-family: Helvetica;
+      font-weight: regular;
+      color: #505050;
+      font-size: 18px;
+      background: #F1F4F5;
+      margin: 2% 1% 0% 1%;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background: #D0D8EC;
+        color: #264A97;
+        border: none;
+        text-decoration: none;
+        option{
+          color: #505050;
+          background: #FFFFFF;
+          cursor: pointer;
+        }
+      }
+      &:active {
+        background: #D0D8EC;
+        color: #264A97;
+        border: none;
+        text-decoration: none;
+        option{
+          color: #505050;
+          background: #FFFFFF;
+          cursor: pointer;
+        }
+      }
+      &:focus {
+        background: #D0D8EC;
+        color: #264A97;
+        border: none;
+        text-decoration: none;
+        option{
+          color: #505050;
+          background: #FFFFFF;
+          cursor: pointer;
+        }
+      }
+    }
+    .btn-charge{
+      border: none;
+      -webkit-border-radius: 4;
+      -moz-border-radius: 4;
+      border-radius: 4px;
+      -webkit-box-shadow: 0px 2px 5px #F1F4F5;
+      -moz-box-shadow: 0px 2px 5px #F1F4F5;
+      box-shadow: 0px 1px 1px #000000;
+      padding: 5px 20px 5px 20px;
+      font-family: Helvetica;
+      font-weight: regular;
+      color: #ffffff;
+      font-size: 18px;
+      background: #148261;
+      margin: 2% 1% 0% 1%;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        padding: 5px 20px 5px 20px;
+        background: #11644b;
+        color: #ffffff;
+
+      }
+      &:focus {
+        background: #11644b;
+        padding: 5px 20px 5px 20px;
+        color: #ffffff;
+      }
+      &:disabled{
+        cursor: not-allowed;
+        pointer-events: none;
+
+        /*Button disabled - CSS color class*/
+        border: 1px solid #148261; 
+        -webkit-border-radius: 4;
+        -moz-border-radius: 4;
+        border-radius: 4px;
+        -webkit-box-shadow: 0px 2px 5px #F1F4F5;
+        -moz-box-shadow: 0px 2px 5px #F1F4F5;
+        box-shadow: 0px 1px 1px #000000;
+        padding: 5px 20px 5px 20px;
+        font-family: Helvetica;
+        font-weight: regular;
+        color: #148261;
+        font-size: 18px;
+        background: #ffffff;
+        margin: 2% 1% 0% 1%;
+        text-align: center;
+
+      }
+      &#btn-new-cross{
+        background: #264A97;
+        color: #ffffff;
+        border: 1px solid #264A97; 
+        margin: 0%;
+        &:hover {
+          background: #002a85;
+          padding: 6px 20px 6px 20px;
+          color: #ffffff;
+        }
+        &:active {
+          background:  #002a85;
+          color: #ffffff;
+        }
+        &:focus {
+          background: #002a85;
+          color: #ffffff;
+        }
+      }
+    }
+    .c-index-container{
+        margin-top: 3%;
+    }
+    .nav-tabs{
+      li {
+        a.active {
+          color: #264A97;
+          font-size: 20px;
+          font-family: Helvetica;
+          font-weight: bold;
+        } 
+      }
+      a.nav-link{
+        border-radius: 6px;
+        font-size: 20px;
+      }
+      a{
+        color: #505050;
+      }
+    }
+    .index-graphic-background{
+      margin-top: 5%;
+      h2{
+        &#selectVariable{
+          font-size: 23px;
+          color: #505050;
+          margin-top: 200px;
+          margin-bottom: auto;
+          font-weight: normal;
+        }
+      }
+    }
+    h2 {
+      &#variableName{
+        font-size: 18px;
+        font-weight: regular;
+        margin: 2% 1% 0% 1%;
+        color: #264A97;
+        font-weight: bold;
+        display: inline-block;
+      }
+    }
+    .c-bread-crumb {
+      background-color: transparent;
+    } 
+    .text-cross{
+      font-size: 25px;
+      color: #505050;
+    }
+    .imgButton{
+      width: 25px;
+      height: 25px;
+    }
+}
+
+.highcharts-legend-item{
+  .highcharts-point{
+    stroke: #ccd6eb;
+    stroke-width :1;
+  }
+}
